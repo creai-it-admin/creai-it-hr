@@ -6,21 +6,37 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "tsx --test \"server/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit",
+    "ingest": "tsx scripts/ingest.ts",
+    "test:db": "tsx --test --test-concurrency=1 tests/db/*.test.ts",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "db:prune-runs": "tsx scripts/prune-runs.ts",
+    "db:audit-resources": "tsx tests/db/resource-audit.ts",
+    "db:import-sqlite": "tsx scripts/import-sqlite.ts"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "@next/env": "^16.3.6",
+    "cheerio": "^1.2.0",
     "next": "16.3.6",
+    "playwright": "^1.63.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^24.19.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.6",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=24.0.0"
   }
 }
